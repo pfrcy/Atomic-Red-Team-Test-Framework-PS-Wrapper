@@ -1,6 +1,7 @@
 # Atomic-Red-Team-Test-Framework-PS-Wrapper
 simple wrapper for atomic tests on windows clients and servers. Contains 2 scenarios for each
 
+Execution logs can be found in ` %TEMP%\AtomicTeam_Logs`
 ***
 
 ## Windows Client Szenario 1 (ca. 16 Techniques)  
