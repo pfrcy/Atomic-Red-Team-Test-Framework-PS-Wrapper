@@ -131,7 +131,7 @@ function Select-And-RunScenario {
             $logFile = Join-Path $logDir ("Client_Szenario1_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".log")
             Run-Scenario -ScenarioName "Windows Client Szenario 1" -Tests @(
                 "T1059.001", "T1547.001", "T1003.001", "T1083", "T1055.001", "T1133", "T1071.001",
-                "T1112", "T1486", "T120", "T1566", "T1021.001", "T1114.001", "T1082", "T1485", "T1564.001"
+                "T1112", "T1486", "T1566", "T1021.001", "T1114.001", "T1082", "T1485", "T1564.001"
             ) -LogFile $logFile
             return $true
         }
