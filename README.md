@@ -16,7 +16,6 @@ Dieses Szenario simuliert einen typischen Angriff auf einen Windows-Arbeitsplatz
 - **T1071.001 - Web Protocols:** Kommunikation über HTTP/HTTPS mit Command-and-Control Servern, typischer Kanal für Daten- und Befehlsaustausch.  
 - **T1112 - Modify Registry:** Anpassung von Registrierungseinträgen zur Manipulation der Systemkonfiguration oder Persistenz.  
 - **T1486 - Data Encrypted for Impact:** Verschlüsselung von Dateien auf dem System zum Zweck der Erpressung (Ransomware).  
-- **T120 - Custom Technik: Vermutlich Tippfehler, alternative Interpretation notwendig.**  
 - **T1566 - Phishing:** Einsatz sozialer Manipulation zur initialen Kompromittierung des Systems über Benutzerinteraktion.  
 - **T1021.001 - Remote Desktop Protocol:** Fernzugriff über RDP, um lateral Movement zu ermöglichen.  
 - **T1114.001 - Email Collection:** Sammeln von E-Mails als Quelle sensibler Informationen.  
