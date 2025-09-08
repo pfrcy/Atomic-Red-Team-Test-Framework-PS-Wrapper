@@ -4,6 +4,31 @@ PowerShell Wrapper zur Installation des Atomic Red Team Frameworks mit vollstän
 Execution Policy Setup, interaktiver Auswahl von umfangreichen Angriffsszenarien (je 15-20 Techniques) und strukturierter Protokollierung.
 #>
 
+# --- Neue Helper: Provider & PowerShellGet non-interaktiv bereitstellen ---
+function Ensure-NuGetProvider {
+    $minVersion = [Version]'2.8.5.201'
+    try {
+        # TLS 1.2 erzwingen (ältere Win/PS-Versionen)
+        [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+
+        $nuget = Get-PackageProvider -Name NuGet -ListAvailable -ErrorAction SilentlyContinue |
+                 Sort-Object Version -Descending | Select-Object -First 1
+        if (-not $nuget -or $nuget.Version -lt $minVersion) {
+            Write-Host "Installiere NuGet Provider..." -ForegroundColor Yellow
+            Install-PackageProvider -Name NuGet -MinimumVersion $minVersion -Force -Scope CurrentUser -ErrorAction Stop
+        }
+        Import-PackageProvider -Name NuGet -Force -ErrorAction Stop
+
+        $repo = Get-PSRepository -Name 'PSGallery' -ErrorAction SilentlyContinue
+        if ($repo -and $repo.InstallationPolicy -ne 'Trusted') {
+            Set-PSRepository -Name 'PSGallery' -InstallationPolicy Trusted
+        }
+    } catch {
+        Write-Warning "NuGet Provider Setup fehlgeschlagen: $_"
+    }
+}
+
+
 # Logfunktion: schreibt Zeitstempel und Zeilen in Logdatei
 function Write-Log {
     param(
@@ -173,6 +198,8 @@ function Select-And-RunScenario {
 # Start des Hauptprogramms
 Clear-Host
 Write-Host "=== AtomicTeam Installer & Szenario Runner mit Defender-Ausnahme und Log ===" -ForegroundColor Cyan
+
+Ensure-NuGetProvider
 
 Add-DefenderExclusion
 Set-ExecutionPolicyIfNeeded
