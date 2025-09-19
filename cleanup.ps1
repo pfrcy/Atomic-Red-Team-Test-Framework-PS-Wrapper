@@ -28,7 +28,7 @@ function Cleanup-Scenario {
             Write-Host "Cleanup abgeschlossen für $test" -ForegroundColor Green
         }
         catch {
-            Write-Warning "Cleanup fehlgeschlagen für $test: $_"
+            Write-Host "Cleanup fehlgeschlagen"
         }
     }
     Write-Host "Cleanup für Szenario $scenarioName abgeschlossen." -ForegroundColor Magenta
