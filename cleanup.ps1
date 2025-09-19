@@ -1,5 +1,5 @@
 # Pfad zum Invoke-AtomicRedTeam Modul anpassen
-$atomicModulePath = "C:\AtomicRedTeam\invoke-atomicredteam-xxxx\Invoke-AtomicRedTeam.psd1"
+$atomicModulePath = "C:\AtomicRedTeam\invoke-atomicredteam\Invoke-AtomicRedTeam.psd1"
 
 Import-Module -Name $atomicModulePath -Force -ErrorAction Stop
 
