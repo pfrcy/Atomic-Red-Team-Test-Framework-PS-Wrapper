@@ -154,7 +154,6 @@ function Select-And-RunScenario {
         "1" {
             $logFile = Join-Path $logDir ("Client_Szenario1_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".log")
             Run-Scenario -ScenarioName "Windows Client Szenario 1" -Tests @(
-                # Reihenfolge + Tests wie in der überarbeiteten Client-Liste
                 "T1059.001", "T1083", "T1082", "T1003.001", "T1112",
                 "T1547.001", "T1055.001", "T1133", "T1071.001", "T1564.001",
                 "T1486", "T1485", "T1204", "T1021.001", "T1114.001"
@@ -164,7 +163,6 @@ function Select-And-RunScenario {
         "2" {
             $logFile = Join-Path $logDir ("Server_Szenario1_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".log")
             Run-Scenario -ScenarioName "Windows Server Szenario 1" -Tests @(
-                # Reihenfolge + Tests wie in der überarbeiteten Server-Liste
                 "T1059.001", "T1057", "T1083", "T1082", "T1098",
                 "T1543", "T1116", "T1620", "T1105", "T1166",
                 "T1021.001", "T1564", "T1486", "T1529"
