@@ -143,11 +143,10 @@ function Select-And-RunScenario {
     if (-not (Test-Path $logDir)) {
         New-Item -ItemType Directory -Path $logDir | Out-Null
     }
+
     Write-Host "`nBitte wähle ein Szenario zum Ausführen:" -ForegroundColor Yellow
-    Write-Host "1) Windows Client Szenario 1 (ca. 16 Techniques)"
-    Write-Host "2) Windows Client Szenario 2 (ca. 15 Techniques)"
-    Write-Host "3) Windows Server Szenario 1 (ca. 18 Techniques)"
-    Write-Host "4) Windows Server Szenario 2 (ca. 20 Techniques)"
+    Write-Host "1) Windows Client Szenario 1 (überarbeitet)"
+    Write-Host "2) Windows Server Szenario 1 (überarbeitet)"
     Write-Host "Q) Beenden"
     $selection = Read-Host "Deine Auswahl"
 
@@ -155,32 +154,20 @@ function Select-And-RunScenario {
         "1" {
             $logFile = Join-Path $logDir ("Client_Szenario1_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".log")
             Run-Scenario -ScenarioName "Windows Client Szenario 1" -Tests @(
-                "T1059.001", "T1547.001", "T1003.001", "T1083", "T1055.001", "T1133", "T1071.001",
-                "T1112", "T1486", "T1566", "T1021.001", "T1114.001", "T1082", "T1485", "T1564.001"
+                # Reihenfolge + Tests wie in der überarbeiteten Client-Liste
+                "T1059.001", "T1083", "T1082", "T1003.001", "T1112",
+                "T1547.001", "T1055.001", "T1133", "T1071.001", "T1564.001",
+                "T1486", "T1485", "T1204", "T1021.001", "T1114.001"
             ) -LogFile $logFile
             return $true
         }
         "2" {
-            $logFile = Join-Path $logDir ("Client_Szenario2_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".log")
-            Run-Scenario -ScenarioName "Windows Client Szenario 2" -Tests @(
-                "T1083", "T1112", "T1566", "T1560", "T1114.001", "T1543", "T1055.001",
-                "T1065", "T1110", "T1189", "T1055.002", "T1562", "T1086", "T1082", "T1057"
-            ) -LogFile $logFile
-            return $true
-        }
-        "3" {
             $logFile = Join-Path $logDir ("Server_Szenario1_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".log")
             Run-Scenario -ScenarioName "Windows Server Szenario 1" -Tests @(
-                "T1083", "T1098", "T1082", "T1116", "T1059.001", "T1114.002", "T1543", "T1105",
-                "T1620", "T1021.001", "T1176", "T1564", "T1166", "T1486", "T1529", "T1057"
-            ) -LogFile $logFile
-            return $true
-        }
-        "4" {
-            $logFile = Join-Path $logDir ("Server_Szenario2_" + (Get-Date -Format "yyyyMMdd_HHmmss") + ".log")
-            Run-Scenario -ScenarioName "Windows Server Szenario 2" -Tests @(
-                "T1566", "T1547.001", "T1560", "T1564", "T1112", "T1647", "T1059", "T1486",
-                "T1528", "T1190", "T1204", "T1114", "T1539"
+                # Reihenfolge + Tests wie in der überarbeiteten Server-Liste
+                "T1059.001", "T1057", "T1083", "T1082", "T1098",
+                "T1543", "T1116", "T1620", "T1105", "T1166",
+                "T1021.001", "T1564", "T1486", "T1529"
             ) -LogFile $logFile
             return $true
         }
@@ -194,6 +181,7 @@ function Select-And-RunScenario {
         }
     }
 }
+
 
 # Start des Hauptprogramms
 Clear-Host
